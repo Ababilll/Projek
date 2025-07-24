@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>I Love You Mbull 💖</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 600vw;
+      height: 600vh;
+      min-width: 100vw;
+      min-height: 100vh;
+      overflow: scroll;
+      font-family: 'Arial', sans-serif;
+      touch-action: pan-x pan-y;
+      background: linear-gradient(135deg, #1f0036, #36013f, #2e003e);
+      background-size: 400% 400%;
+      animation: bgAnim 20s ease infinite;
+    }
+
+    @keyframes bgAnim {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .scroll-wrapper {
+      perspective: 1000px;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .scene {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease;
+    }
+
+    .neon-text,
+    .falling-photo {
+      position: absolute;
+      top: -10vh;
+      transform: translateX(-50%);
+      animation: glow 1.5s infinite alternate, fall 10s ease-in forwards infinite;
+      opacity: 0.8;
+    }
+
+    .neon-text {
+      font-size: clamp(1rem, 5vw, 3rem);
+      color: #fff;
+      white-space: nowrap;
+      padding: 0 1rem;
+      text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e;
+    }
+
+    .falling-photo img {
+      width: clamp(120px, 15vw, 200px);
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ff69b4;
+      border: 2px solid #fff;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e;
+      }
+      100% {
+        text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10vh;
+        opacity: 0;
+        transform: translateX(-50%) translateZ(var(--z, 0)) scale(1);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        top: 110vh;
+        opacity: 0;
+        transform: translateX(-50%) translateZ(var(--z, 0)) scale(1.1);
+      }
+    }
+
+    .neon-text:nth-child(1)  { left: 20%; --z: 0px;    animation-delay: 0s; }
+    .neon-text:nth-child(2)  { left: 60%; --z: -100px; animation-delay: 1s; }
+    .neon-text:nth-child(3)  { left: 40%; --z: -200px; animation-delay: 2s; }
+    .neon-text:nth-child(4)  { left: 80%; --z: -300px; animation-delay: 3s; }
+    .neon-text:nth-child(5)  { left: 10%; --z: -400px; animation-delay: 4s; }
+    .neon-text:nth-child(6)  { left: 30%; --z: -500px; animation-delay: 5s; }
+    .neon-text:nth-child(7)  { left: 70%; --z: -600px; animation-delay: 6s; }
+    .neon-text:nth-child(8)  { left: 50%; --z: -700px; animation-delay: 7s; }
+    .neon-text:nth-child(9)  { left: 25%; --z: -800px; animation-delay: 8s; }
+    .neon-text:nth-child(10) { left: 90%; --z: -900px; animation-delay: 9s; }
+
+    .falling-photo:nth-child(11) { left: 15%; --z: -1000px; animation-delay: 2s; }
+    .falling-photo:nth-child(12) { left: 35%; --z: -1100px; animation-delay: 3s; }
+    .falling-photo:nth-child(13) { left: 55%; --z: -1200px; animation-delay: 4s; }
+    .falling-photo:nth-child(14) { left: 75%; --z: -1300px; animation-delay: 5s; }
+    .falling-photo:nth-child(15) { left: 85%; --z: -1400px; animation-delay: 6s; }
+
+    @media (max-width: 600px) {
+      .neon-text {
+        font-size: 1.2rem;
+      }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-wrapper">
+    <div class="scene" id="scene">
+      <div class="neon-text" style="--z: 0px;">I Love You So Much ❤️</div>
+      <div class="neon-text" style="--z: -100px;">I Love You So Much 💖</div>
+      <div class="neon-text" style="--z: -200px;">I Love You So Much 💘</div>
+      <div class="neon-text" style="--z: -300px;">I Love You So Much 💕</div>
+      <div class="neon-text" style="--z: -400px;">I Love You Mbull 💞</div>
+      <div class="neon-text" style="--z: -500px;">I Love You Mbull 💓</div>
+      <div class="neon-text" style="--z: -600px;">I Love You Mbull 💗</div>
+      <div class="neon-text" style="--z: -700px;">Happy BirthDay 🎂</div>
+      <div class="neon-text" style="--z: -800px;">Happy BirthDay 🎉</div>
+      <div class="neon-text" style="--z: -900px;">Happy BirthDay 🥳</div>
+    </div>
+  </div>
+
+  <audio autoplay loop muted>
+    <source src="romantic.mp3" type="audio/mp3">
+  </audio>
+
+    <script>
+  const scene = document.getElementById('scene');
+   // Tambahkan 5 foto jatuh secara acak
+   const fotoList = [
+      { src: "mbud (1).jpeg", left: 10 },
+      { src: "mbud (2).jpeg", left: 25 },
+      { src: "mbud (3).jpeg", left: 40 },
+      { src: "mbud (4).jpeg", left: 60 },
+      { src: "mbud (5).jpeg", left: 75 },
+    ];
+
+    fotoList.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.classList.add("falling-photo");
+
+      div.style.left = `${item.left}%`;
+      div.style.setProperty('--z', `${-1000 - index * 100}px`);
+      div.style.animationDelay = `${Math.random() * 5}s`;
+
+      const img = document.createElement("img");
+      img.src = item.src;
+      img.alt = `Foto ${index + 1}`;
+
+      div.appendChild(img);
+      scene.appendChild(div);
+    });
+
+  let hasUserScrolled = false;
+
+  function scrollToCenter() {
+    const centerX = (document.body.scrollWidth - window.innerWidth) / 2;
+    const centerY = (document.body.scrollHeight - window.innerHeight) / 2;
+
+    window.scrollTo({
+      left: centerX,
+      top: centerY,
+      behavior: 'auto'
+    });
+  }
+
+  window.onload = () => {
+    // scroll ke tengah setelah semua elemen siap
+    setTimeout(scrollToCenter, 100);
+  };
+
+  window.addEventListener('scroll', () => {
+    const centerX = (document.body.scrollWidth - window.innerWidth) / 2;
+    const centerY = (document.body.scrollHeight - window.innerHeight) / 2;
+
+    const scrollXNow = window.scrollX;
+    const scrollYNow = window.scrollY;
+
+    if (!hasUserScrolled && (Math.abs(scrollXNow - centerX) > 10 || Math.abs(scrollYNow - centerY) > 10)) {
+      hasUserScrolled = true;
+    }
+
+    if (hasUserScrolled) {
+      const rotateX = Math.max(Math.min((scrollYNow - centerY) / 25, 180), -180);
+      const rotateY = Math.max(Math.min((scrollXNow - centerX) / 25, 180), -180);
+      scene.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    } else {
+      scene.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    }
+  });
+</script>
+
+</body>
+</html>

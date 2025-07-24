@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love You Mbull 💖</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 300vh;
+      width: 200vw;
+      overflow: scroll;
+      background: #000;
+      font-family: 'Arial', sans-serif;
+      touch-action: pan-x pan-y;
+    }
+
+    .scroll-wrapper {
+      perspective: 1000px;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .scene {
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* transform awal DIHAPUS agar tidak miring duluan */
+  transition: transform 0.2s ease;
+}
+
+
+    .neon-text {
+      position: absolute;
+      top: -10vh;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(1rem, 4vw, 5rem);
+      color: #fff;
+      text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e;
+      animation: glow 1.5s infinite alternate, fall 10s ease-in forwards infinite;
+      white-space: nowrap;
+      opacity: 0.8;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e;
+      }
+      100% {
+        text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10vh;
+        opacity: 0;
+        transform: translateX(-50%) translateZ(var(--z, 0)) scale(1);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        top: 110vh;
+        opacity: 0;
+        transform: translateX(-50%) translateZ(var(--z, 0)) scale(1.1);
+      }
+    }
+
+    /* Multiple layers with depth and delay */
+    .neon-text:nth-child(1)  { left: 20%; --z: 0px;    animation-delay: 0s; }
+    .neon-text:nth-child(2)  { left: 60%; --z: -100px; animation-delay: 1s; }
+    .neon-text:nth-child(3)  { left: 40%; --z: -200px; animation-delay: 2s; }
+    .neon-text:nth-child(4)  { left: 80%; --z: -300px; animation-delay: 3s; }
+    .neon-text:nth-child(5)  { left: 10%; --z: -400px; animation-delay: 4s; }
+    .neon-text:nth-child(6)  { left: 30%; --z: -500px; animation-delay: 5s; }
+    .neon-text:nth-child(7)  { left: 70%; --z: -600px; animation-delay: 6s; }
+    .neon-text:nth-child(8)  { left: 50%; --z: -700px; animation-delay: 7s; }
+    .neon-text:nth-child(9)  { left: 25%; --z: -800px; animation-delay: 8s; }
+    .neon-text:nth-child(10) { left: 90%; --z: -900px; animation-delay: 9s; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .neon-text {
+        font-size: 6vw;
+      }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-wrapper">
+    <div class="scene" id="scene">
+      <div class="neon-text" style="--z: 0px;">I Love You Mbull ❤️</div>
+      <div class="neon-text" style="--z: -100px;">I Love You Mbull 💖</div>
+      <div class="neon-text" style="--z: -200px;">I Love You Mbull 💘</div>
+      <div class="neon-text" style="--z: -300px;">I Love You Mbull 💕</div>
+      <div class="neon-text" style="--z: -400px;">I Love You Mbull 💞</div>
+      <div class="neon-text" style="--z: -500px;">I Love You Mbull 💓</div>
+      <div class="neon-text" style="--z: -600px;">I Love You Mbull 💗</div>
+      <div class="neon-text" style="--z: -700px;">Happy BirthDay 🎂</div>
+      <div class="neon-text" style="--z: -800px;">Happy BirthDay 🎉</div>
+      <div class="neon-text" style="--z: -900px;">Happy BirthDay 🥳</div>
+    </div>
+  </div>
+
+  <!-- 🎵 Background Music (isi file MP3-mu sendiri) -->
+  <audio autoplay loop muted>
+    <source src="romantic.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+  let hasUserScrolled = false;
+let initialScrollX = 0;
+let initialScrollY = 0;
+
+window.onload = () => {
+  initialScrollX = window.innerWidth;
+  initialScrollY = window.innerHeight;
+
+  window.scrollTo({
+    left: initialScrollX,
+    top: initialScrollY,
+    behavior: 'auto'
+  });
+};
+
+window.addEventListener('scroll', () => {
+  const scrollXNow = window.scrollX;
+  const scrollYNow = window.scrollY;
+
+  // Aktifkan efek hanya jika user benar-benar scroll
+  if (!hasUserScrolled && (Math.abs(scrollXNow - initialScrollX) > 10 || Math.abs(scrollYNow - initialScrollY) > 10)) {
+    hasUserScrolled = true;
+  }
+
+  if (hasUserScrolled) {
+    const rotateX = scrollYNow / 50;
+    const rotateY = scrollXNow / 50;
+    scene.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  } else {
+    scene.style.transform = `rotateX(0deg) rotateY(0deg)`; // tetap tegak
+  }
+});
+
+  </script>
+  
+
+</body>
+</html>
